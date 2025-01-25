@@ -11,6 +11,8 @@ const yolo_classes = [
     "clock", "vase", "scissors", "teddy bear", "hair drier", "toothbrush"
 ]
 
+const model = await ort.InferenceSession.create("yolov8m.onnx");
+
 async function detect_objects_on_image(buf) {
     const [input,img_width,img_height] = await prepare_input(buf);
     const output = await run_model(input);
@@ -49,7 +51,7 @@ async function prepare_input(context) {
  * @returns Raw output of neural network as a flat array of numbers
  */
 async function run_model(input) {
-    const model = await ort.InferenceSession.create("yolov8m.onnx");
+    //const model = await ort.InferenceSession.create("yolov8m.onnx");
     input = new ort.Tensor(Float32Array.from(input),[1, 3, 640, 640]);
     const outputs = await model.run({images:input});
     return outputs["output0"].data;
