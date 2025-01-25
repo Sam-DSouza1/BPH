@@ -88,9 +88,10 @@
     
 
   <!-- TAPPABLE AREA -->
-  <div class="tap-area" id="tap-area">
-    <h1>Tap anywhere to analyze your surroundings</h1>
-  </div>
+  <div class="tap-area" id="tap-area"
+     style="justify-content: flex-start; align-items: center; padding-top: 2rem;">
+  <h1>Tap anywhere to analyze your surroundings</h1>
+</div>
 
   <!-- DESCRIPTION BOX -->
   <div class="description" id="description">Processing...</div>
@@ -135,6 +136,8 @@
       }, 5000);
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+  <script src="./js/yolo.js"></script>
   <script src="./js/camera.js"></script>
 </body>
 </html>

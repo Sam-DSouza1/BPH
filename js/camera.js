@@ -3,7 +3,11 @@
     // width to the value defined here, but the height will be
     // calculated based on the aspect ratio of the input stream.
   
+<<<<<<< HEAD
     const width = document.body.width; // We will scale the photo width to this
+=======
+    const width = 640; // We will scale the photo width to this
+>>>>>>> 13da7066f0face45b44e7b409050727716fa7246
     let height = 0; // This will be computed based on the input stream
   
     // |streaming| indicates whether or not we're currently streaming
@@ -112,7 +116,7 @@
         canvas.width = width;
         canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
-  
+        detect_objects_on_image(context)
         const data = canvas.toDataURL("image/png");
         photo.setAttribute("src", data);
       } else {
