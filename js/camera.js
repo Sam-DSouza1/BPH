@@ -112,15 +112,23 @@
         canvas.width = width;
         canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
-        detect_objects_on_image(context)
-        const data = canvas.toDataURL("image/png");
-        const response = await respond(data);
-        console.log(response);
-        photo.setAttribute("src", data);
+    
+        const data = canvas.toDataURL("image/jpeg"); // Convert to JPEG format
+        const rawBase64Data = data.split(",")[1]; // Extract the Base64 portion
+    
+        try {
+          const response = await respond(rawBase64Data); // Call respond with Base64 image
+          console.log("AI Response:", response); // Log AI response
+        } catch (error) {
+          console.error("Error in respond function:", error);
+        }
+    
+        photo.setAttribute("src", data); // Display captured image
       } else {
         clearPhoto();
       }
     }
+    
   
     // Set up our event listener to run the startup process
     // once loading is complete.
