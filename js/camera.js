@@ -3,11 +3,7 @@
     // width to the value defined here, but the height will be
     // calculated based on the aspect ratio of the input stream.
   
-<<<<<<< HEAD
-    const width = document.body.width; // We will scale the photo width to this
-=======
-    const width = 640; // We will scale the photo width to this
->>>>>>> 13da7066f0face45b44e7b409050727716fa7246
+    const width = window.outerWidth; // We will scale the photo width to this
     let height = 0; // This will be computed based on the input stream
   
     // |streaming| indicates whether or not we're currently streaming
@@ -96,7 +92,7 @@
     // captured.
   
     function clearPhoto() {
-      const context = canvas.getContext("2d");
+      const context = canvas.getContext("2d", {willReadFrequently: true});
       context.fillStyle = "#AAA";
       context.fillRect(0, 0, canvas.width, canvas.height);
   
