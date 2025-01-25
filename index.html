@@ -106,8 +106,9 @@
 
 
   <!-- SCRIPTS -->
-  <script>
-
+  <script type="module">
+    import { respond } from './js/requests.js';
+    
     // Reference to HTML elements
     const tapArea = document.getElementById('tap-area');
     const description = document.getElementById('description');
@@ -117,7 +118,7 @@
       const response = await fetch('./encoded_image.txt'); // Ensure the file is in the same directory
       return await response.text();
     }
-    // console.log(await loadBase64FromFile());
+    console.log(await loadBase64FromFile());
 
 
     // Click event listener
@@ -149,8 +150,8 @@
     });
   </script>
   <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+  <script src="./js/camera.js"></script>
   <script src="./js/requests.js"></script>
   <script src="./js/yolo.js"></script>
-  <script src="./js/camera.js"></script>
 </body>
 </html>
