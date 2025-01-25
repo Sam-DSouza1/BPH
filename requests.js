@@ -1,21 +1,5 @@
-const fs = require("fs");
-const path = require("path");
-const { GoogleGenerativeAI } = require("@google/generative-ai");
-const dotenv = require("dotenv");
-dotenv.config();
-
-// initialize process
-const genAI = new GoogleGenerativeAI(process.env.API_KEY);
-
-// encode image to base64
-function encode(image_path) {
-  const image_buffer = fs.readFileSync(image_path);
-  return image_buffer.toString("base64");
-}
-
-// generate response to prompt
-async function respond(image_path) {
-  const encodedImage = encode(image_path);
+export async function respond(base64Image) {
+  const apiKey = "AIzaSyANglJxogyArZcrQap-kHivX0_sdDfAsXU"; // Replace with your actual API key.
 
   const request = {
     contents: [{
@@ -35,23 +19,28 @@ async function respond(image_path) {
         {
           inline_data: {
             mime_type: "image/jpeg",
-            data: encodedImage,
+            data: base64Image,
           },
         },
       ],
     }],
   };
 
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
   try {
-    const result = await model.generateContent(request);
-    console.log(result.response.text());
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(request),
+      }
+    );
+
+    const result = await response.json();
+    console.log(result);
+    return result.contents[0].parts[0].text;
   } catch (error) {
     console.error("Error:", error.message);
+    return "Failed to generate a response.";
   }
 }
-
-// specify image file path and call the respond
-const image_path = path.resolve(__dirname, "C:/Users/cbai7/OneDrive/Desktop/BPH/crosswalk-test-img.jpg");
-respond(image_path);
