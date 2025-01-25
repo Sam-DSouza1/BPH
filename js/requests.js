@@ -13,6 +13,10 @@ function encode(image_path) {
   return image_buffer.toString("base64");
 }
 
+async function tester() {
+  return "Hello World!";
+}
+
 // generate response to prompt
 async function respond(image_path) {
   const encodedImage = encode(image_path);
