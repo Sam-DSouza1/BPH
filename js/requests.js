@@ -44,7 +44,7 @@ export async function respond(base64image) {
       throw new Error(`Error: ${response.statusText}`);
     }
 
-    // const result = await response.json();
+    const result = await response.json();
     // console.log("API Response:", result);
 
     return result.candidates[0].content.parts[0].text;
