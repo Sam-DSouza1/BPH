@@ -78,11 +78,11 @@
 <body>
     <div class="flex">
         <div class="camera">
-            <video id="video">Video stream not available.</video>
+            <video autoplay muted playsinline id="video">Video stream not available.</video>
         </div>
-        <canvas id="canvas"> </canvas>
-        <!-- <div class="output"> -->
-        <!-- <img id="photo" alt="The screen capture will appear in this box." /> -->
+        <canvas style="display: none;" id="canvas"> </canvas>
+        <div class="output">
+            <img id="photo" alt="The screen capture will appear in this box." />
         </div>
     </div>
     

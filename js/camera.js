@@ -79,7 +79,6 @@
       document.body.addEventListener(
         "click",
         (ev) => {
-            console.log("AASD")
           takePicture();
           ev.preventDefault();
         },
