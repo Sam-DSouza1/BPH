@@ -1,4 +1,6 @@
-async function respond(base64image) {
+import { API_KEY } from "./config.js";
+
+export async function respond(base64image) {
 
   const request = {
     contents: [
@@ -20,7 +22,7 @@ async function respond(base64image) {
           {
             inline_data: {
               mime_type: "image/jpeg",
-              data: base64image, // Base64 encoded image string
+              data: base64image,
             },
           },
         ],
@@ -30,7 +32,7 @@ async function respond(base64image) {
 
   try {
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${process.env.API_KEY}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -43,9 +45,14 @@ async function respond(base64image) {
     }
 
     const result = await response.json();
-    return result.contents[0].parts[0].text;
+    // console.log("API Response:", result);
+
+    return result.candidates[0].content.parts[0].text;
   } catch (error) {
     console.error("Error:", error.message);
     return "Failed to process the image.";
   }
 }
+
+window.respond = respond;
+module.exports = { respond };
