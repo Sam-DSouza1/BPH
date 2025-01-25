@@ -106,7 +106,7 @@
     // drawing that to the screen, we can change its size and/or apply
     // other changes before drawing it.
   
-    function takePicture() {
+    async function takePicture() {
       const context = canvas.getContext("2d");
       if (width && height) {
         canvas.width = width;
@@ -114,6 +114,8 @@
         context.drawImage(video, 0, 0, width, height);
         detect_objects_on_image(context)
         const data = canvas.toDataURL("image/png");
+        const response = await respond(data);
+        console.log(response);
         photo.setAttribute("src", data);
       } else {
         clearPhoto();
