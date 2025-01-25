@@ -95,18 +95,39 @@
   <!-- DESCRIPTION BOX -->
   <div class="description" id="description">Processing...</div>
 
-  <script>
+  <!-- SCRIPTS -->
+  <script type="module">
+    // Import the `respond` function from `requests.js`
+    import { respond } from './requests.js';
+
+    // Reference to HTML elements
     const tapArea = document.getElementById('tap-area');
     const description = document.getElementById('description');
 
-    tapArea.addEventListener('click', () => {
-      // Mock description
-      description.style.display = 'block';
-      description.textContent = 'Mock: Car ahead, safe to cross.';
+    async function loadBase64FromFile() {
+      const response = await fetch('./encoded_image.txt'); // Ensure the file is in the same directory
+      return await response.text();
+    }
+    // console.log(await loadBase64FromFile());
 
-      // Speak the guidance out loud
-      const utterance = new SpeechSynthesisUtterance(description.textContent);
-      window.speechSynthesis.speak(utterance);
+    // Click event listener
+    tapArea.addEventListener('click', async () => {
+      description.textContent = "Processing...";
+      description.style.display = 'block';
+
+      try {
+        // Call the `respond` function and get the AI-generated response
+        const base64Image = await loadBase64FromFile(); // Load Base64 dynamically
+        const responseText = await respond(base64Image);
+        description.textContent = responseText;
+
+        // Speak the response out loud
+        const utterance = new SpeechSynthesisUtterance(responseText);
+        window.speechSynthesis.speak(utterance);
+      } catch (error) {
+        description.textContent = "Error processing the request.";
+        console.error("Error:", error);
+      }
 
       // Hide the description after 5 seconds
       setTimeout(() => {

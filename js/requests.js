@@ -53,5 +53,5 @@ async function respond(image_path) {
 }
 
 // specify image file path and call the respond
-const image_path = path.resolve(__dirname, "crosswalk-test-img.jpg");
+const image_path = path.resolve(__dirname, "C:/Users/cbai7/OneDrive/Desktop/BPH/crosswalk-test-img.jpg");
 respond(image_path);
