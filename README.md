@@ -1,2 +1,6 @@
-# BPH
-made you look lmao
+# SenseWAI.us
+SenseWAI aims to warn blind pedestrians of incoming objects using the AI powered computer vision capabilities of their phone cameras. Using a custom trained YOLOv11 model, a powerful neural network implemented by Ultralytics, detecting crosswalks and relaying information to the blind user can occur within moments. Because SenseWAI is tailored towards those who are visually impaired, our application is completely functional with minimal UI. However, YOLO highlights the area around identified people, objects, etc. in different colors and serves as a way for people with sight to visualize how important SenseWAI can be for those who have difficulty seeing. Additionally, our extensive prompt engineering of the Google Gemini AI API, coupled with the use of the Speech Synthesis TTS API, returns clear spoken feedback on the user's surroundings based on a real time snapshot from their camera feed. It also gives warnings for obstacles that are in the path or coming towards the user, among other various details.
+
+SenseWAI has a plain mode that doesn't display any visuals or camera feed, but still returns spoken feedback, as well as a visual mode showcasing YOLO's abilities for demo purposes. The user taps the screen to receive a spoken description of their environment based on their real time phone camera feed.
+
+To be safely guided by SenseWAI, navigate to sensewai.us and allow browser access to your device's camera. ^u^
