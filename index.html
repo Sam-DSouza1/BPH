@@ -4,82 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BPH - Neutral Frontend</title>
-
-
-  <style>
-    /* RESET */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-
-    /* BODY STYLE */
-    body {
-      width: 100%;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-      overflow: hidden; /* Hide scrollbars */
-      color: #333; /* Neutral text color */
-      background: linear-gradient(135deg, #ECE9E6, #FFFFFF);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      position: relative;
-    }
-
-
-    @keyframes gradientBG {
-      0%   { background-position: 0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-
-    /* FULLSCREEN TAP AREA */
-    .tap-area {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-
-
-    .tap-area h1 {
-      font-size: 1.5rem;
-      padding: 1rem;
-      background-color: rgba(0, 0, 0, 0.05);
-      border-radius: 12px;
-      color: #333;
-      margin: 0;
-    }
-
-
-    /* DESCRIPTION BOX */
-    .description {
-      position: fixed;
-      bottom: 5%;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.1);
-      padding: 0.75rem 1rem;
-      border-radius: 8px;
-      display: none;
-      font-size: 1rem;
-      color: #333;
-      z-index: 999;
-    }
-  </style>
+  <link rel="stylesheet" href="/src/style.css">
 </head>
 <body>
     <div class="flex">
@@ -107,7 +32,6 @@
 
   <!-- SCRIPTS -->
   <script type="module">
-    import { respond } from './js/requests.js';
     
     // Reference to HTML elements
     const tapArea = document.getElementById('tap-area');
@@ -134,8 +58,8 @@
   <!-- <script type="module" src="./js/yolo2.js"></script>
   <script type="module" src="./js/utils/detect.js"></script>
   <script type="module" src="./js/utils/renderBox.js"></script> -->
-  <script type="module" src="./js/requests.js"></script>
-  <script src="./js/camera.js"></script>
+  <script type="module" src="/src/js/requests.js"></script>
+  <script src="/src/js/camera.js"></script>
   <!-- <script type="module" src="./js/yolo2.js"></script> -->
 </body>
 </html>
