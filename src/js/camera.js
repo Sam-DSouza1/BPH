@@ -6,7 +6,7 @@ const modelName = "yolov8n";
 let model = null;
 
 const msg = new SpeechSynthesisUtterance();
-msg.rate = 1.5;
+// msg.rate = 1.5;
 
 async function load() {
     const yolov8 = await tf.loadGraphModel(
@@ -122,15 +122,15 @@ load();
         press();
       });
       // double click to toggle continuous feedback, but single click to toggle off
-      document.getElementById("tap-area").addEventListener("dblclick", () => {
-        mousedown = !mousedown;
-        if (mousedown) {
-          press();
-        }
-        else {
-          lastTime = null;
-        }
-      });
+      // document.getElementById("tap-area").addEventListener("dblclick", () => {
+      //   mousedown = !mousedown;
+      //   if (mousedown) {
+      //     press();
+      //   }
+      //   else {
+      //     lastTime = null;
+      //   }
+      // });
       
       async function press() {
         // while(mousedown) {
