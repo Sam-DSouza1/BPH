@@ -20,8 +20,10 @@ export async function respond(base64image) {
                     Physical layout: Identify key objects, obstacles, or changes in the environment (e.g., furniture, walls, doors, stairs, sidewalks, vehicles).
                     Important details for navigation: Include approximate directions and distances (e.g., “on your left,” “about 3 feet ahead,” “directly behind you”) and any noticeable hazards or pathways.
                     Relevant visual cues: Mention signs, labels, or text that could aid in orientation.
+                    Definition: An obstacle includes people, objects, and any hazard blocking the path.
                     Guidelines:
 
+                    Warnings: If there is an obstacle, person, or object in the path or close to the camera, you must start the response with "Warning", and then proceed with description of environment.
                     Clarity over detail: Use simple, direct language. Avoid jargon, color references, or extraneous details that aren’t critical for navigation.
                     Priority-based: Emphasize hazards, pathways, and significant landmarks first, then add secondary details.
                     Accessibility-friendly: Format your response so it can be read aloud easily by screen readers (e.g., short sentences, minimal punctuation).
