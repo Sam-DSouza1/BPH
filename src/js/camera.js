@@ -90,14 +90,28 @@ msg.rate = 1.5;
       
       let lastTime = null;
       let mousedown = false;
-      document.getElementById("tap-area").addEventListener("mousedown", press);
-      document.getElementById("tap-area").addEventListener("touchstart", press);
+      document.getElementById("tap-area").addEventListener("mousedown", () => {
+        mousedown = true;
+        press();
+      });
+      document.getElementById("tap-area").addEventListener("touchstart", () => {
+        mousedown = true;
+        press();
+      });
+      document.getElementById("tap-area").addEventListener("dblclick", () => {
+        mousedown = !mousedown;
+        if (mousedown) {
+          press();
+        }
+        else {
+          lastTime = null;
+        }
+      });
       
       async function press() {
-        mousedown = true;
         while(mousedown) {
           const timeElapsed = Date.now() - lastTime;
-          if(lastTime == null || timeElapsed > 5000) {
+          if(lastTime == null || timeElapsed > 8000) {
             takePicture();
             lastTime = Date.now();
           }
@@ -111,7 +125,7 @@ msg.rate = 1.5;
       document.getElementById("tap-area").addEventListener("touchend", () => {
         mousedown = false;
       })
-  
+      
       clearPhoto();
     }
   
