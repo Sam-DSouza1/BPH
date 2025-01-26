@@ -1,5 +1,5 @@
 import * as tf from "@tensorflow/tfjs";
-import labels from "./labels.json";
+import labels from './labels.json' assert { type: 'json' };
 import { renderBoxes } from "./renderBox";
 
 const numClass = labels.length;
