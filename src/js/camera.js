@@ -5,6 +5,9 @@ import { detect, detectVideo } from "./utils/detect";
 const modelName = "yolov8n";
 let model = null;
 
+//const msg = SpeechSynthesisUtterance();
+//msg.rate = 1.5;
+
 async function load() {
     const yolov8 = await tf.loadGraphModel(
       `${modelName}_web_model/model.json`,
@@ -174,12 +177,12 @@ load();
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
           
-          const msg = new SpeechSynthesisUtterance();
+          var msg = new SpeechSynthesisUtterance();
           msg.rate = 1.5;
           msg.text = response;
           window.speechSynthesis.speak(msg);          
         } catch (error) {
-          const msg = new SpeechSynthesisUtterance();
+          var msg = new SpeechSynthesisUtterance();
           msg.rate = 1.5;
           msg.text = "Error fetching response";
           window.speechSynthesis.speak(msg); 
