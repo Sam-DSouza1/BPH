@@ -10,9 +10,9 @@ export async function respond(base64image) {
         parts: [
           {
             text: `You are assisting a visually impaired person by describing their surroundings based on the image provided. The purpose is to give helpful guidance. Keep the response very concise using simple and clear language. 
-            The user is never in frame, do not mistake a person in the image for the user. Do not mention colors or lighting.
-            Identify all key obstacles, such as cars, poles, people, low ceilings, stairs, walls, or uneven terrain, and their relative positions (e.g., "ahead," "left," "right", distance in feet, etc). If these obstacles are moving, indicate so (e.g. running, something thrown, etc).
-            Include another sentence only if there is a street, crosswalk, or path and indicate whether it is safe to cross it. If this is not applicable, do not write a second sentence.`            
+                  The user is never in frame, do not mistake a person in the image for the user. Do not mention colors or lighting.
+                  Identify all key obstacles, such as cars, poles, people, low ceilings, stairs, walls, or uneven terrain, and their relative positions (e.g., "ahead," "left," "right", distance in feet, etc). If these obstacles are moving, indicate so (e.g. running, something thrown, etc).
+                  Include another sentence only if there is a street, crosswalk, or path and indicate whether it is safe to cross it. If this is not applicable, do not write a second sentence.`            
           },
           {
             inline_data: {

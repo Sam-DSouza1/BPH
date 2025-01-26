@@ -87,8 +87,38 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
       document.getElementById("tap-area").addEventListener(
         "click",
         (ev) => {
+          if (responsiveVoice.isPlaying()) {
+            ev.preventDefault();
+            return;
+          }
           takePicture();
           ev.preventDefault();
+        },
+        false,
+      );
+
+      let interval = null;
+      document.getElementById("tap-area").addEventListener(
+        'mousedown',
+        (ev) => {
+          ev.preventDefault();
+          interval = setInterval(() => {
+            if (!responsiveVoice.isPlaying()) {
+              takePicture();
+            }
+          }, 1000);
+          takePicture();
+        },
+        false,
+      );
+
+      document.getElementById("tap-area").addEventListener(
+        'mouseup',
+        () => {
+          if (interval) {
+            clearInterval(interval);
+            interval = null;
+          }
         },
         false,
       );
