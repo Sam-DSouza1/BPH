@@ -125,10 +125,12 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
         const rawBase64Data = data.split(",")[1]; // Extract the Base64 portion
    
         try {
+          responsiveVoice.clickEvent();
+          responsiveVoice.speak(".", "UK English Female");
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
-          responsiveVoice.clickEvent();
+
           responsiveVoice.speak(response, "UK English Female", {rate: 1.1});
         } catch (error) {
           console.error("Error in respond function:", error);
