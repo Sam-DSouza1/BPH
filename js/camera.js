@@ -44,7 +44,11 @@
       startButton = document.getElementById("start-button");
   
       navigator.mediaDevices
-        .getUserMedia({ video: true, audio: false })
+        .getUserMedia({ 
+          video: true,
+          audio: false,
+          video: {facingMode: { ideal: 'environment' },
+        }, })
         .then((stream) => {
           video.srcObject = stream;
           video.play();
