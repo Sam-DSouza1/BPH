@@ -1,9 +1,13 @@
+document.getElementById("video-stream-checkbox").addEventListener("click", () => {
+  document.getElementById("video").classList.toggle("hidden");
+});
+
 (() => {
     // The width and height of the captured photo. We will set the
     // width to the value defined here, but the height will be
     // calculated based on the aspect ratio of the input stream.
   
-    const width = 640; // We will scale the photo width to this
+    const width = window.innerWidth; // We will scale the photo width to this
     let height = 0; // This will be computed based on the input stream
   
     // |streaming| indicates whether or not we're currently streaming
@@ -80,7 +84,7 @@
         false,
       );
   
-      document.body.addEventListener(
+      document.getElementById("tap-area").addEventListener(
         "click",
         (ev) => {
           takePicture();
@@ -116,20 +120,19 @@
         canvas.width = width;
         canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
-    
+   
         const data = canvas.toDataURL("image/jpeg"); // Convert to JPEG format
         const rawBase64Data = data.split(",")[1]; // Extract the Base64 portion
-    
+   
         try {
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
-          const utterance = new SpeechSynthesisUtterance(response);
-          window.speechSynthesis.speak(utterance);
+          responsiveVoice.speak(response, "UK English Female", {rate: 1.1});
         } catch (error) {
           console.error("Error in respond function:", error);
         }
-    
+   
         photo.setAttribute("src", data); // Display captured image
       } else {
         clearPhoto();
