@@ -1,6 +1,4 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
-console.log(import.meta.env)
-console.log(import.meta.env.VITE_API_KEY)
 
 export async function respond(base64image) {
 
@@ -9,7 +7,7 @@ export async function respond(base64image) {
       {
         parts: [
           {
-            text: `You are assisting a visually impaired person by describing their surroundings based on the image provided. The purpose is to give actionable and helpful guidance.
+            text: `You are assisting a visually impaired person by describing their surroundings based on the image provided. The image provided is from a phone presented from the user's perspective. The purpose is to give actionable and helpful guidance.
             
             Consider the following:
 
