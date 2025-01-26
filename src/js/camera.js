@@ -28,11 +28,6 @@ async function load() {
   };
 load();
 
-const msg = new SpeechSynthesisUtterance();
-msg.rate = 1.5;
-msg.pitch = 1;
-
-
 (() => {
     // The width and height of the captured photo. We will set the
     // width to the value defined here, but the height will be
@@ -178,9 +173,14 @@ msg.pitch = 1;
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
+          
+          const msg = new SpeechSynthesisUtterance();
+          msg.rate = 1.5;
           msg.text = response;
-          window.speechSynthesis.speak(msg);          //responsiveVoice.speak(response, "UK English Female", {rate: 1.1});
+          window.speechSynthesis.speak(msg);          
         } catch (error) {
+          const msg = new SpeechSynthesisUtterance();
+          msg.rate = 1.5;
           msg.text = "Error fetching response";
           window.speechSynthesis.speak(msg); 
           console.error("Error in respond function:", error);
