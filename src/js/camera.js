@@ -84,31 +84,38 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
         false,
       );
   
+      let interval = null;
+      let speaking = false;
+
       document.getElementById("tap-area").addEventListener(
         "click",
         (ev) => {
-          responsiveVoice.speak("", "UK English Female", {rate: 1.1});
-          if (responsiveVoice.isPlaying()) {
+          if (speaking) {
             ev.preventDefault();
             return;
           }
+          speaking = true;
           takePicture();
+          speaking = false;
           ev.preventDefault();
         },
         false,
       );
 
-      let interval = null;
       document.getElementById("tap-area").addEventListener(
         'mousedown',
         (ev) => {
           ev.preventDefault();
           interval = setInterval(() => {
-            if (!responsiveVoice.isPlaying()) {
+            if (!speaking) {
+              speaking = true;
               takePicture();
+              speaking = false;
             }
-          }, 3000);
-          takePicture();
+          }, 8000);
+          speaking = true;
+          takePicture(speaking);
+          speaking = false;
         },
         false,
       );
@@ -159,15 +166,12 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
-          var msg = new SpeechSynthesisUtterance();
-          msg.text = response;
-          window.speechSynthesis.speak(msg);
+          const utterance = new SpeechSynthesisUtterance(response);
+          utterance.pitch = 1;
+          utterance.rate = 1.1;
+          window.speechSynthesis.speak(utterance);
+          //responsiveVoice.speak(response, "UK English Female", {rate: 1.1});
         } catch (error) {
-          var msg = new SpeechSynthesisUtterance();
-
-          msg.text = "Error fetching response";
-          window.speechSynthesis.speak(msg);
-
           console.error("Error in respond function:", error);
         }
    
