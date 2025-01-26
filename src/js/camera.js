@@ -159,7 +159,9 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
-          responsiveVoice.speak(response, "UK English Female", {rate: 1.1});
+          var msg = new SpeechSynthesisUtterance();
+          msg.text = response;
+          window.speechSynthesis.speak(msg);
         } catch (error) {
           var msg = new SpeechSynthesisUtterance();
 
