@@ -30,6 +30,7 @@ load();
 
 const msg = new SpeechSynthesisUtterance();
 msg.rate = 1.5;
+msg.pitch = 1;
 
 
 (() => {
@@ -177,12 +178,11 @@ msg.rate = 1.5;
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
-          const utterance = new SpeechSynthesisUtterance(response);
-          utterance.pitch = 1;
-          utterance.rate = 1.1;
-          window.speechSynthesis.speak(utterance);
-          //responsiveVoice.speak(response, "UK English Female", {rate: 1.1});
+          msg.text = response;
+          window.speechSynthesis.speak(msg);          //responsiveVoice.speak(response, "UK English Female", {rate: 1.1});
         } catch (error) {
+          msg.text = "Error fetching response";
+          window.speechSynthesis.speak(msg); 
           console.error("Error in respond function:", error);
         }
    
