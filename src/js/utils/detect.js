@@ -1,6 +1,6 @@
 import * as tf from "@tensorflow/tfjs";
-import { renderBoxes } from "./renderBox";
 import labels from "./labels.json";
+import { renderBoxes } from "./renderBox";
 
 const numClass = labels.length;
 
@@ -46,7 +46,6 @@ const preprocess = (source, modelWidth, modelHeight) => {
  * @param {VoidFunction} callback function to run after detection process
  */
 export const detect = async (source, model, canvasRef, callback = () => {}) => {
-  console.log(source, model, canvasRef)
   const [modelWidth, modelHeight] = model.inputShape.slice(1, 3); // get model width and height
 
   tf.engine().startScope(); // start scoping tf engine

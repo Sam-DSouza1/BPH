@@ -11,7 +11,6 @@ import labels from "./labels.json";
 export const renderBoxes = (canvasRef, boxes_data, scores_data, classes_data, ratios) => {
   const ctx = canvasRef.getContext("2d");
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // clean canvas
-
   const colors = new Colors();
 
   // font configs
