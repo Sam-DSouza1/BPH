@@ -5,6 +5,10 @@ import { detect, detectVideo } from "./utils/detect";
 const modelName = "yolov8n";
 let model = null;
 
+var msg = new SpeechSynthesisUtterance();
+msg.text = "Hello Wolrd";
+window.speechSynthesis.speak(msg);
+
 //const msg = SpeechSynthesisUtterance();
 //msg.rate = 1.5;
 
@@ -177,12 +181,10 @@ load();
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
           
-          var msg = new SpeechSynthesisUtterance();
           msg.rate = 1.5;
           msg.text = response;
           window.speechSynthesis.speak(msg);          
         } catch (error) {
-          var msg = new SpeechSynthesisUtterance();
           msg.rate = 1.5;
           msg.text = "Error fetching response";
           window.speechSynthesis.speak(msg); 
