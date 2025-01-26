@@ -120,20 +120,19 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
         canvas.width = width;
         canvas.height = height;
         context.drawImage(video, 0, 0, width, height);
-    
+   
         const data = canvas.toDataURL("image/jpeg"); // Convert to JPEG format
         const rawBase64Data = data.split(",")[1]; // Extract the Base64 portion
-    
+   
         try {
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
-          const utterance = new SpeechSynthesisUtterance(response);
-          window.speechSynthesis.speak(utterance);
+          responsiveVoice.speak(response, "UK English Female", {rate: 1.1});
         } catch (error) {
           console.error("Error in respond function:", error);
         }
-    
+   
         photo.setAttribute("src", data); // Display captured image
       } else {
         clearPhoto();
