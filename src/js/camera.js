@@ -122,6 +122,7 @@ msg.rate = 1.5;
         mousedown = true;
         press();
       });
+      // double click to toggle continuous feedback, but single click to toggle off
       document.getElementById("tap-area").addEventListener("dblclick", () => {
         mousedown = !mousedown;
         if (mousedown) {
@@ -150,6 +151,19 @@ msg.rate = 1.5;
         mousedown = false;
       })
   
+      clearPhoto();
+    }
+  
+    // Fill the photo with an indication that none has been
+    // captured.
+  
+    function clearPhoto() {
+      const context = canvas.getContext("2d", {willReadFrequently: true});
+      context.fillStyle = "#AAA";
+      context.fillRect(0, 0, canvas.width, canvas.height);
+  
+      const data = canvas.toDataURL("image/png");
+      photo.setAttribute("src", data);
     }
 
     // Capture a photo by fetching the current contents of the video
