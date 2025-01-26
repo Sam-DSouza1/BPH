@@ -4,30 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BPH - Neutral Frontend</title>
-  <link rel="stylesheet" href="/src/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="/src/style.css" rel="stylesheet">
+
 </head>
-<body>
-    <div class="flex">
-        <div class="camera">
-            <video autoplay muted playsinline id="video">Video stream not available.</video>
-        </div>
+<body class="ibm-plex-mono-semibold">
+    <div class="video-checkbox">
+      <input type="checkbox" id="video-stream-checkbox" name="video-stream-checkbox" value="Bike">
+      <label for="video-stream-checkbox"> Enable Video Stream</label>
+    </div>
+    <div style="display: none;">
+        
         <canvas style="display: none;" id="canvas"> </canvas>
         <div class="output">
             <img id="photo" alt="The screen capture will appear in this box." />
         </div>
     </div>
+
+    <video class="hidden" autoplay muted playsinline id="video">Video stream not available.</video>
    
 
 
   <!-- TAPPABLE AREA -->
-  <div class="tap-area" id="tap-area"
-     style="justify-content: flex-start; align-items: center; padding-top: 2rem;">
-  <h1>Tap anywhere to analyze your surroundings</h1>
-</div>
+  <div class="tap-area" id="tap-area">
+    <h1>Tap anywhere to analyze your surroundings</h1>
+  </div>
 
 
   <!-- DESCRIPTION BOX -->
-  <div class="description" id="description">Processing...</div>
+  <!-- <div class="description" id="description">Processing...</div> -->
 
 
   <!-- SCRIPTS -->
@@ -59,7 +66,7 @@
   <script type="module" src="./js/utils/detect.js"></script>
   <script type="module" src="./js/utils/renderBox.js"></script> -->
   <script type="module" src="/src/js/requests.js"></script>
-  <script src="/src/js/camera.js"></script>
+  <script type="module" src="/src/js/camera.js"></script>
   <!-- <script type="module" src="./js/yolo2.js"></script> -->
 </body>
 </html>

@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 *, *::before, *::after {
     box-sizing: border-box;
   }
@@ -6,18 +8,6 @@
   }
   html, body {
     height: 100%;
-  }
-  body {
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-    background-color: #f0f0f0; /* Optional: Background color for visibility */
-    font-family: Arial, sans-serif;
   }
   img, picture, video, canvas, svg {
     display: block;
@@ -33,24 +23,48 @@
     isolation: isolate;
   }
 
+  body {
+    background-color: #0B0B09;
+    color: white;
+  }
+
 .header {
     padding: 10px;
     font-size: 1rem; /* Adjust size as needed */
     color: #fff;
 }
 
-.video-box {
+.video-checkbox {
     position: absolute;
     top: 0;
     right: 0;
-    padding: 4px;
+    padding: 12px;
 }
 
-/* #video {
+#video {
     z-index: -1;
     position: absolute;
     top: 0;
     left: 0;
     height: 100vh;
     width: 100vw;
-} */
+}
+
+.tap-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.ibm-plex-mono-semibold {
+  font-family: "IBM Plex Mono", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.hidden {
+  display: none;
+}
