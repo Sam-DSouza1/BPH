@@ -135,7 +135,6 @@ msg.pitch = 1;
       });
       
       async function press() {
-        mousedown = true;
         while(mousedown) {
           const timeElapsed = Date.now() - lastTime;
           if(lastTime == null || timeElapsed > 8000) {
