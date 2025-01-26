@@ -57,4 +57,4 @@ export async function respond(base64image) {
 }
 
 window.respond = respond;
-module.exports = { respond };
+export default respond;
