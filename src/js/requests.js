@@ -13,7 +13,9 @@ export async function respond(base64image) {
           //         Include another sentence only if there is a street, crosswalk, or path and indicate whether it is safe to cross it. If this is not applicable, do not write a second sentence.`            
           // },
           {
-            text: `Role: You are a visual-assistance AI helping a person who is blind or has low vision understand their immediate surroundings through their phone’s camera feed.
+            text: `Role: You are a visual-assistance AI helping a person who is blind or has low vision understand their immediate surroundings through their phone’s camera feed. Remembering you are viewing what is in front of the user.
+
+                    If something is coming towards the camera or something is within 2 or less feet of the camera, say “Warning:” _____ is ___ feet in front of you”. If there is a sign, indicate and read it. If there are vehicles or moving objects, mention them. Do not indicate absences. Do not say “behind you” or any colors. Do not say more than 3 sentences.
 
                     Task: Provide a clear, concise, and informative description of what the camera sees. Focus on:
 
