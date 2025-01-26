@@ -113,10 +113,10 @@ load();
       
       let lastTime = null;
       let mousedown = false;
-      document.getElementById("tap-area").addEventListener("mousedown", () => {
-        mousedown = true;
-        press();
-      });
+      // document.getElementById("tap-area").addEventListener("mousedown", () => {
+      //   mousedown = true;
+      //   press();
+      // });
       document.getElementById("tap-area").addEventListener("touchstart", () => {
         mousedown = true;
         press();
