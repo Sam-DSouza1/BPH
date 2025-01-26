@@ -168,6 +168,10 @@ load();
    
         const data = canvas.toDataURL("image/jpeg"); // Convert to JPEG format
         const rawBase64Data = data.split(",")[1]; // Extract the Base64 portion
+        var msg = new SpeechSynthesisUtterance();
+
+        msg.text = "Hello World";
+        window.speechSynthesis.speak(msg);
    
         try {
           const response = await respond(rawBase64Data); // Call respond with Base64 image
