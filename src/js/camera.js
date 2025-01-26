@@ -2,6 +2,10 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
   document.getElementById("video").classList.toggle("hidden");
 });
 
+const msg = new SpeechSynthesisUtterance();
+msg.rate = 1.5;
+
+
 (() => {
     // The width and height of the captured photo. We will set the
     // width to the value defined here, but the height will be
@@ -83,46 +87,30 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
         },
         false,
       );
-  
-      document.getElementById("tap-area").addEventListener(
-        "click",
-        (ev) => {
-          responsiveVoice.speak("", "UK English Female", {rate: 1.1});
-          if (responsiveVoice.isPlaying()) {
-            ev.preventDefault();
-            return;
+      
+      let lastTime = null;
+      let mousedown = false;
+      document.getElementById("tap-area").addEventListener("mousedown", press);
+      document.getElementById("tap-area").addEventListener("touchstart", press);
+      
+      async function press() {
+        mousedown = true;
+        while(mousedown) {
+          const timeElapsed = Date.now() - lastTime;
+          if(lastTime == null || timeElapsed > 5000) {
+            takePicture();
+            lastTime = Date.now();
           }
-          takePicture();
-          ev.preventDefault();
-        },
-        false,
-      );
+          await new Promise(r => setTimeout(r, 1000));
+        }
+      }
 
-      let interval = null;
-      document.getElementById("tap-area").addEventListener(
-        'mousedown',
-        (ev) => {
-          ev.preventDefault();
-          interval = setInterval(() => {
-            if (!responsiveVoice.isPlaying()) {
-              takePicture();
-            }
-          }, 3000);
-          takePicture();
-        },
-        false,
-      );
-
-      document.getElementById("tap-area").addEventListener(
-        'mouseup',
-        () => {
-          if (interval) {
-            clearInterval(interval);
-            interval = null;
-          }
-        },
-        false,
-      );
+      document.getElementById("tap-area").addEventListener("mouseup", () => {
+        mousedown = false;
+      })
+      document.getElementById("tap-area").addEventListener("touchend", () => {
+        mousedown = false;
+      })
   
       clearPhoto();
     }
@@ -159,12 +147,9 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
-          var msg = new SpeechSynthesisUtterance();
           msg.text = response;
           window.speechSynthesis.speak(msg);
         } catch (error) {
-          var msg = new SpeechSynthesisUtterance();
-
           msg.text = "Error fetching response";
           window.speechSynthesis.speak(msg);
 
