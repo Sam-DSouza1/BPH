@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 28
+names: ['Barrier Ahead', 'Cycle Crossing', 'Give Way', 'Horn Prohibited', 'Hospital', 'Left Hair Pin Bend', 'Left hand curve', 'Men at Work', 'No Parking', 'No Stopping', 'Parking Lot Cars', 'Parking Lot Cycle', 'Pedestrian Crossing', 'Pedestrian Prohibited', 'Petrol Pump- Gas Station', 'Right Hair Pin Bend', 'Right Hand Curve', 'Right Reverse Bend', 'Road Wideness Ahead', 'School Ahead', 'Speed Limit -10-', 'Speed Limit -100-', 'Speed Limit -35-', 'Speed Limit -60-', 'Speed Limit -80-', 'Speed limit -40-', 'Stop', 'Straight Prohibitor No Entry']
+
+roboflow:
+  workspace: sengunthar-engineering-college
+  project: traffic_sign-gv5rp
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/sengunthar-engineering-college/traffic_sign-gv5rp/dataset/1

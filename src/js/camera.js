@@ -2,6 +2,10 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
   document.getElementById("video").classList.toggle("hidden");
 });
 
+const msg = new SpeechSynthesisUtterance();
+msg.rate = 1.5;
+
+
 (() => {
     // The width and height of the captured photo. We will set the
     // width to the value defined here, but the height will be
@@ -83,53 +87,30 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
         },
         false,
       );
-  
-      let interval = null;
-      let speaking = false;
-
-      document.getElementById("tap-area").addEventListener(
-        "click",
-        (ev) => {
-          if (speaking) {
-            ev.preventDefault();
-            return;
+      
+      let lastTime = null;
+      let mousedown = false;
+      document.getElementById("tap-area").addEventListener("mousedown", press);
+      document.getElementById("tap-area").addEventListener("touchstart", press);
+      
+      async function press() {
+        mousedown = true;
+        while(mousedown) {
+          const timeElapsed = Date.now() - lastTime;
+          if(lastTime == null || timeElapsed > 5000) {
+            takePicture();
+            lastTime = Date.now();
           }
-          speaking = true;
-          takePicture();
-          speaking = false;
-          ev.preventDefault();
-        },
-        false,
-      );
+          await new Promise(r => setTimeout(r, 1000));
+        }
+      }
 
-      document.getElementById("tap-area").addEventListener(
-        'mousedown',
-        (ev) => {
-          ev.preventDefault();
-          interval = setInterval(() => {
-            if (!speaking) {
-              speaking = true;
-              takePicture();
-              speaking = false;
-            }
-          }, 8000);
-          speaking = true;
-          takePicture(speaking);
-          speaking = false;
-        },
-        false,
-      );
-
-      document.getElementById("tap-area").addEventListener(
-        'mouseup',
-        () => {
-          if (interval) {
-            clearInterval(interval);
-            interval = null;
-          }
-        },
-        false,
-      );
+      document.getElementById("tap-area").addEventListener("mouseup", () => {
+        mousedown = false;
+      })
+      document.getElementById("tap-area").addEventListener("touchend", () => {
+        mousedown = false;
+      })
   
       clearPhoto();
     }
