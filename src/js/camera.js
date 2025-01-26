@@ -161,6 +161,11 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
           // Speak the response out loud
           responsiveVoice.speak(response, "UK English Female", {rate: 1.1});
         } catch (error) {
+          var msg = new SpeechSynthesisUtterance();
+
+          msg.text = "Hello World";
+          window.speechSynthesis.speak(msg);
+
           console.error("Error in respond function:", error);
         }
    
