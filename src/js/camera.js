@@ -5,12 +5,10 @@ import { detect, detectVideo } from "./utils/detect";
 const modelName = "yolov8n";
 let model = null;
 
-var msg = new SpeechSynthesisUtterance();
-msg.text = "Hello Wolrd";
-window.speechSynthesis.speak(msg);
 
-//const msg = SpeechSynthesisUtterance();
-//msg.rate = 1.5;
+
+const msg = new SpeechSynthesisUtterance();
+msg.rate = 1.5;
 
 async function load() {
     const yolov8 = await tf.loadGraphModel(
@@ -117,29 +115,14 @@ load();
       
       let lastTime = null;
       let mousedown = false;
-      document.getElementById("tap-area").addEventListener("mousedown", () => {
-        mousedown = true;
-        press();
-      });
-      document.getElementById("tap-area").addEventListener("touchstart", () => {
-        mousedown = true;
-        press();
-      });
-      // double click to toggle continuous feedback, but single click to toggle off
-      document.getElementById("tap-area").addEventListener("dblclick", () => {
-        mousedown = !mousedown;
-        if (mousedown) {
-          press();
-        }
-        else {
-          lastTime = null;
-        }
-      });
+      document.getElementById("tap-area").addEventListener("mousedown", press);
+      document.getElementById("tap-area").addEventListener("touchstart", press);
       
       async function press() {
+        mousedown = true;
         while(mousedown) {
           const timeElapsed = Date.now() - lastTime;
-          if(lastTime == null || timeElapsed > 8000) {
+          if(lastTime == null || timeElapsed > 5000) {
             takePicture();
             lastTime = Date.now();
           }
@@ -180,12 +163,9 @@ load();
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
-          
-          msg.rate = 1.5;
           msg.text = response;
-          window.speechSynthesis.speak(msg);          
+          window.speechSynthesis.speak(msg);         
         } catch (error) {
-          msg.rate = 1.5;
           msg.text = "Error fetching response";
           window.speechSynthesis.speak(msg); 
           console.error("Error in respond function:", error);
