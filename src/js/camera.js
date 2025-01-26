@@ -92,6 +92,15 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
         },
         false,
       );
+      document.getElementById("tap-area").addEventListener(
+        "touchstart",
+        (ev) => {
+          ev.preventDefault();
+          takePicture();
+        },
+        false
+      );
+      
   
       clearPhoto();
     }
