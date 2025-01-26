@@ -1,6 +1,7 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
 
-export async function respond(base64image) {
+export async function respond(base64image, classes) {
+  const classes_str = classes.join(', ');
 
   const request = {
     contents: [
@@ -17,12 +18,16 @@ export async function respond(base64image) {
 
                     If something is coming towards the camera or something is within 2 or less feet of the camera, say “Warning:” _____ is ___ feet in front of you”. If there is a sign, indicate and read it. If there are vehicles or moving objects, mention them. Do not indicate absences. Do not say “behind you” or any colors. Do not say more than 3 sentences.
 
+                  Here is some additional data of objects recognized by another model to be in the view of the person you are assisting. Include these recognized objects to aid in your description of the environment.
+                  The detected objects are: ${classes_str}.
                     Task: Provide a clear, concise, and informative description of what the camera sees. Focus on:
 
                     Physical layout: Identify key objects, obstacles, or changes in the environment (e.g., furniture, walls, doors, stairs, sidewalks, vehicles).
                     Important details for navigation: Include approximate directions and distances (e.g., “on your left,” “about 3 feet ahead,” “directly behind you”) and any noticeable hazards or pathways.
                     Relevant visual cues: Mention signs, labels, or text that could aid in orientation.
                     Guidelines:
+
+                    Pay extra attention to things like crosswalks or pedestrian walk signs. If you see a traffic light or pedestrian walk sign, always try to determine whether it is safe for the user to cross or not.
 
                     Clarity over detail: Use simple, direct language. Avoid jargon, color references, or extraneous details that aren’t critical for navigation.
                     Priority-based: Emphasize hazards, pathways, and significant landmarks first, then add secondary details.

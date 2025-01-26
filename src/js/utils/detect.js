@@ -3,6 +3,7 @@ import labels from "./labels.json";
 import { renderBoxes } from "./renderBox";
 
 const numClass = labels.length;
+let classes_data_global = [];
 
 /**
  * Preprocess image / frame before forwarded into the model
@@ -82,6 +83,7 @@ export const detect = async (source, model, canvasRef, callback = () => {}) => {
   const boxes_data = boxes.gather(nms, 0).dataSync(); // indexing boxes by nms index
   const scores_data = scores.gather(nms, 0).dataSync(); // indexing scores by nms index
   const classes_data = classes.gather(nms, 0).dataSync(); // indexing classes by nms index
+  classes_data_global = classes_data;
 
   renderBoxes(canvasRef, boxes_data, scores_data, classes_data, [xRatio, yRatio]); // render boxes
   tf.dispose([res, transRes, boxes, scores, classes, nms]); // clear memory
@@ -90,6 +92,14 @@ export const detect = async (source, model, canvasRef, callback = () => {}) => {
 
   tf.engine().endScope(); // end of scoping
 };
+
+export function getClasses() {
+  let classes = [];
+  for (let i = 0; i < classes_data_global.length; i++) {
+    classes.push(labels[classes_data_global[i]])
+  }
+  return classes;
+}
 
 /**
  * Function to detect video from every source.

@@ -1,6 +1,6 @@
 import * as tf from "@tensorflow/tfjs";
 import "@tensorflow/tfjs-backend-webgl"; // set backend to webgl
-import { detect, detectVideo } from "./utils/detect";
+import { detect, detectVideo, getClasses } from "./utils/detect";
 
 const modelName = "yolov8n";
 let model = null;
@@ -28,6 +28,7 @@ async function load() {
     }; // set model & input shape
 
     tf.dispose([warmupResults, dummyInput]); // cleanup memory
+
   };
 load();
 
@@ -131,7 +132,6 @@ load();
       //     lastTime = null;
       //   }
       // });
-      
       async function press() {
         // while(mousedown) {
           // const timeElapsed = Date.now() - lastTime;
@@ -175,9 +175,10 @@ load();
 
         // msg.text = "Hello World";
         // window.speechSynthesis.speak(msg);
+       const classes = getClasses();
    
         try {
-          const response = await respond(rawBase64Data); // Call respond with Base64 image
+          const response = await respond(rawBase64Data, classes); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
           // const msg = new SpeechSynthesisUtterance();
