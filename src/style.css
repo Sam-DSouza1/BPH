@@ -50,6 +50,8 @@
 } */
 
 .tap-area {
+  z-index: 10;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -69,6 +71,7 @@
 }
 
 #photo, #canvas, #video {
+  z-index: 1;
   position: absolute;
   top: 50%;  
   left: 50%; 

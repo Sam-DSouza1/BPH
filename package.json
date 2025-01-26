@@ -14,5 +14,10 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/@tensorflow/tfjs"
+    }
   }
 }

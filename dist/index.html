@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BPH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <script type="module" crossorigin src="/assets/index-Bx2tZJsx.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DWHjWtjb.css">
+</head>
+<body class="ibm-plex-mono-semibold">
+    <div class="video-checkbox">
+      <input type="checkbox" id="video-stream-checkbox" name="video-stream-checkbox" value="Bike">
+      <label for="video-stream-checkbox"> Enable Video Stream</label>
+    </div>
+
+    <!-- TAPPABLE AREA -->
+    <div class="tap-area" id="tap-area">
+      <h1>Tap anywhere to analyze your surroundings</h1>
+    </div>
+    <div id="video-stream" class="hidden">
+        <canvas id="canvas" width=640 height=640}> </canvas>
+        <video autoplay muted playsinline id="video">Video stream not available.</video>
+        <!-- <img id="photo" alt="The screen capture will appear in this box." /> -->
+    </div>
+
+  
+
+
+  <!-- DESCRIPTION BOX -->
+  <!-- <div class="description" id="description">Processing...</div> -->
+
+
+  <!-- SCRIPTS -->
+  <!-- <script type="module">
+    
+    // Reference to HTML elements
+    const tapArea = document.getElementById('tap-area');
+    const description = document.getElementById('description');
+
+
+    async function loadBase64FromFile() {
+      const response = await fetch('./encoded_image.txt'); // Ensure the file is in the same directory
+      return await response.text();
+    }
+
+
+    // Click event listener
+    tapArea.addEventListener('click', async () => {
+      description.textContent = "Processing...";
+      description.style.display = 'block';
+
+      // Hide the description after 5 seconds
+      setTimeout(() => {
+        description.style.display = 'none';
+      }, 5000);
+    });
+  </script> -->
+</body>
+</html>

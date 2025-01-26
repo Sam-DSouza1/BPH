@@ -7,7 +7,7 @@ let model = null;
 
 async function load() {
     const yolov8 = await tf.loadGraphModel(
-      `static/${modelName}_web_model/model.json`,
+      `${modelName}_web_model/model.json`,
       {
         onProgress: (fractions) => {
         },
