@@ -87,8 +87,38 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
       document.getElementById("tap-area").addEventListener(
         "click",
         (ev) => {
+          if (responsiveVoice.isPlaying()) {
+            ev.preventDefault();
+            return;
+          }
           takePicture();
           ev.preventDefault();
+        },
+        false,
+      );
+
+      let interval = null;
+      document.getElementById("tap-area").addEventListener(
+        'mousedown',
+        (ev) => {
+          ev.preventDefault();
+          interval = setInterval(() => {
+            if (!responsiveVoice.isPlaying()) {
+              takePicture();
+            }
+          }, 3000);
+          takePicture();
+        },
+        false,
+      );
+
+      document.getElementById("tap-area").addEventListener(
+        'mouseup',
+        () => {
+          if (interval) {
+            clearInterval(interval);
+            interval = null;
+          }
         },
         false,
       );
@@ -128,7 +158,6 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
-          responsiveVoice.clickEvent();
           responsiveVoice.speak(response, "UK English Female", {rate: 1.1});
         } catch (error) {
           console.error("Error in respond function:", error);

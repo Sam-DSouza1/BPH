@@ -1,6 +1,4 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
-console.log(import.meta.env)
-console.log(import.meta.env.VITE_API_KEY)
 
 export async function respond(base64image) {
 
@@ -9,17 +7,10 @@ export async function respond(base64image) {
       {
         parts: [
           {
-            text: `You are assisting a visually impaired person by describing their surroundings based on the image provided. The purpose is to give actionable and helpful guidance.
-            
-            Consider the following:
-
-            1. Identify key obstacles, such as cars, poles, people, or walls, and their relative positions (e.g., "ahead," "left," "right", distance in feet, etc).
-
-            2. If a crosswalk is present, indicate whether it is safe to cross, considering any approaching vehicles.
-
-            3. Mention other important details that could impact movement or navigation, such as stairs, open doors, or uneven terrain.
-
-            4. Keep the response concise, in 1-2 sentences, using simple and clear language.`,
+            text: `You are assisting a visually impaired person by describing their surroundings based on the image provided. The purpose is to give helpful guidance. Keep the response very concise using simple and clear language. 
+                  The user is never in frame, do not mistake a person in the image for the user. Do not mention colors or lighting.
+                  Identify all key obstacles, such as cars, poles, people, low ceilings, stairs, walls, or uneven terrain, and their relative positions (e.g., "ahead," "left," "right", distance in feet, etc). If these obstacles are moving, indicate so (e.g. running, something thrown, etc).
+                  Include another sentence only if there is a street, crosswalk, or path and indicate whether it is safe to cross it. If this is not applicable, do not write a second sentence.`            
           },
           {
             inline_data: {
