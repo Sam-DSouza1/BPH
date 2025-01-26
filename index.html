@@ -15,15 +15,12 @@
       <input type="checkbox" id="video-stream-checkbox" name="video-stream-checkbox" value="Bike">
       <label for="video-stream-checkbox"> Enable Video Stream</label>
     </div>
-    <div style="display: none;">
-        
-        <canvas style="display: none;" id="canvas"> </canvas>
-        <div class="output">
-            <img id="photo" alt="The screen capture will appear in this box." />
-        </div>
+    <div id="video-stream" class="hidden">
+        <canvas id="canvas" width=640 height=640}> </canvas>
+        <video autoplay muted playsinline id="video">Video stream not available.</video>
+        <!-- <img id="photo" alt="The screen capture will appear in this box." /> -->
     </div>
 
-    <video class="hidden" autoplay muted playsinline id="video">Video stream not available.</video>
    
 
 
@@ -62,12 +59,9 @@
       }, 5000);
     });
   </script> -->
-  <!-- <script type="module" src="./js/yolo2.js"></script>
-  <script type="module" src="./js/utils/detect.js"></script>
-  <script type="module" src="./js/utils/renderBox.js"></script> -->
+  <script type="module" src="/src/js/utils/detect.js"></script>
+  <script type="module" src="/src/js/utils/renderBox.js"></script>
   <script type="module" src="/src/js/requests.js"></script>
   <script type="module" src="/src/js/camera.js"></script>
-  <!-- <script type="module" src="./js/yolo2.js"></script> -->
-  <script src="https://code.responsivevoice.org/responsivevoice.js?key=oDhCwvB8"></script>
 </body>
 </html>

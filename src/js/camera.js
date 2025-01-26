@@ -1,6 +1,32 @@
-document.getElementById("video-stream-checkbox").addEventListener("click", () => {
-  document.getElementById("video").classList.toggle("hidden");
-});
+import * as tf from "@tensorflow/tfjs";
+import "@tensorflow/tfjs-backend-webgl"; // set backend to webgl
+import { detect, detectVideo } from "./utils/detect";
+
+const modelName = "yolov8n";
+let model = null;
+
+async function load() {
+    const yolov8 = await tf.loadGraphModel(
+      `static/${modelName}_web_model/model.json`,
+      {
+        onProgress: (fractions) => {
+        },
+      }
+    ); // load model
+
+    // warming up model
+    const dummyInput = tf.ones(yolov8.inputs[0].shape);
+    const warmupResults = yolov8.execute(dummyInput);
+
+    // setLoading({ loading: false, progress: 1 });
+    model = {
+      net: yolov8,
+      inputShape: yolov8.inputs[0].shape,
+    }; // set model & input shape
+
+    tf.dispose([warmupResults, dummyInput]); // cleanup memory
+  };
+load();
 
 const msg = new SpeechSynthesisUtterance();
 msg.rate = 1.5;
@@ -24,7 +50,6 @@ msg.rate = 1.5;
   
     let video = null;
     let canvas = null;
-    let photo = null;
     let startButton = null;
   
     function showViewLiveResultButton() {
@@ -48,7 +73,6 @@ msg.rate = 1.5;
       }
       video = document.getElementById("video");
       canvas = document.getElementById("canvas");
-      photo = document.getElementById("photo");
       startButton = document.getElementById("start-button");
   
       navigator.mediaDevices
@@ -112,21 +136,8 @@ msg.rate = 1.5;
         mousedown = false;
       })
   
-      clearPhoto();
     }
-  
-    // Fill the photo with an indication that none has been
-    // captured.
-  
-    function clearPhoto() {
-      const context = canvas.getContext("2d", {willReadFrequently: true});
-      context.fillStyle = "#AAA";
-      context.fillRect(0, 0, canvas.width, canvas.height);
-  
-      const data = canvas.toDataURL("image/png");
-      photo.setAttribute("src", data);
-    }
-  
+
     // Capture a photo by fetching the current contents of the video
     // and drawing it into a canvas, then converting that to a PNG
     // format data URL. By drawing it on an offscreen canvas and then
@@ -159,9 +170,7 @@ msg.rate = 1.5;
           console.error("Error in respond function:", error);
         }
    
-        photo.setAttribute("src", data); // Display captured image
       } else {
-        clearPhoto();
       }
     }
     
@@ -170,3 +179,15 @@ msg.rate = 1.5;
     // once loading is complete.
     window.addEventListener("load", startup, false);
   })();
+
+let videoOpen = false;
+const videoStreamElement = document.getElementById("video-stream");
+  document.getElementById("video-stream-checkbox").addEventListener("click", () => {
+  videoStreamElement.classList.toggle("hidden");
+  if(videoOpen) {
+    // closeVideo()
+  } else {
+    detectVideo(video, model, canvas);
+    videoOpen = true;
+  }
+});
