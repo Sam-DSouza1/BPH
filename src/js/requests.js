@@ -23,7 +23,7 @@ export async function respond(base64image) {
                     Guidelines:
 
                     Clarity over detail: Use simple, direct language. Avoid jargon, color references, or extraneous details that aren’t critical for navigation.
-                    Priority-based: Emphasize hazards, pathways, and significant landmarks first, then add secondary details.
+                    Priority-based: If there is an immediate obstacle, start the response with "Warning", and then proceed with description of environment. Emphasize hazards, pathways, and significant landmarks first, then add secondary details.
                     Accessibility-friendly: Format your response so it can be read aloud easily by screen readers (e.g., short sentences, minimal punctuation).
                     Accuracy: If you are uncertain about an object or detail, express that uncertainty clearly (e.g., “It appears to be…”).
                     Example response style:
