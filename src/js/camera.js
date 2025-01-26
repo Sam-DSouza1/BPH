@@ -1,3 +1,9 @@
+var msg = new SpeechSynthesisUtterance();
+  
+          // Set the text.
+          msg.text = "balls";
+          window.speechSynthesis.speak(msg);
+
 document.getElementById("video-stream-checkbox").addEventListener("click", () => {
   document.getElementById("video").classList.toggle("hidden");
 });
@@ -147,9 +153,12 @@ msg.rate = 1.5;
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
+          var msg = new SpeechSynthesisUtterance();
           msg.text = response;
           window.speechSynthesis.speak(msg);
         } catch (error) {
+          var msg = new SpeechSynthesisUtterance();
+
           msg.text = "Error fetching response";
           window.speechSynthesis.speak(msg);
 
