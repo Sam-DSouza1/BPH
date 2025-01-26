@@ -1,6 +1,4 @@
 const API_KEY = import.meta.env.VITE_API_KEY;
-console.log(import.meta.env)
-console.log(import.meta.env.VITE_API_KEY)
 
 export async function respond(base64image) {
 
