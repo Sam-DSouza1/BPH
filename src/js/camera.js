@@ -5,6 +5,9 @@ import { detect, detectVideo } from "./utils/detect";
 const modelName = "yolov8n";
 let model = null;
 
+const msg = new SpeechSynthesisUtterance();
+msg.rate = 1.5;
+
 async function load() {
     const yolov8 = await tf.loadGraphModel(
       `${modelName}_web_model/model.json`,
@@ -130,14 +133,14 @@ load();
       });
       
       async function press() {
-        while(mousedown) {
-          const timeElapsed = Date.now() - lastTime;
-          if(lastTime == null || timeElapsed > 8000) {
+        // while(mousedown) {
+          // const timeElapsed = Date.now() - lastTime;
+          // if(lastTime == null || timeElapsed > 8000) {
             takePicture();
-            lastTime = Date.now();
-          }
-          await new Promise(r => setTimeout(r, 1000));
-        }
+            // lastTime = Date.now();
+          // }
+          // await new Promise(r => setTimeout(r, 1000));
+        // }
       }
 
       document.getElementById("tap-area").addEventListener("mouseup", () => {
@@ -184,8 +187,8 @@ load();
         } catch (error) {
           // const msg = new SpeechSynthesisUtterance();
           // msg.rate = 1.5;
-          // msg.text = "Error fetching response";
-          // window.speechSynthesis.speak(msg); 
+          msg.text = "Error fetching response";
+          window.speechSynthesis.speak(msg); 
           console.error("Error in respond function:", error);
         }
    
@@ -201,9 +204,6 @@ load();
 let videoOpen = false;
 const videoStreamElement = document.getElementById("video-stream");
   document.getElementById("video-stream-checkbox").addEventListener("click", () => {
-    var msg = new SpeechSynthesisUtterance();
-  msg.text = "Hello World";
-  window.speechSynthesis.speak(msg);
 
   videoStreamElement.classList.toggle("hidden");
   if(videoOpen) {
