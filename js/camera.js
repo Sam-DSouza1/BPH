@@ -3,7 +3,7 @@
     // width to the value defined here, but the height will be
     // calculated based on the aspect ratio of the input stream.
   
-    const width = window.outerWidth; // We will scale the photo width to this
+    const width = 640; // We will scale the photo width to this
     let height = 0; // This will be computed based on the input stream
   
     // |streaming| indicates whether or not we're currently streaming
@@ -119,6 +119,9 @@
         try {
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
+          // Speak the response out loud
+          const utterance = new SpeechSynthesisUtterance(response);
+          window.speechSynthesis.speak(utterance);
         } catch (error) {
           console.error("Error in respond function:", error);
         }
