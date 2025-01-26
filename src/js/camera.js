@@ -1,9 +1,3 @@
-var msg = new SpeechSynthesisUtterance();
-  
-          // Set the text.
-          msg.text = "balls";
-          window.speechSynthesis.speak(msg);
-
 document.getElementById("video-stream-checkbox").addEventListener("click", () => {
   document.getElementById("video").classList.toggle("hidden");
 });
