@@ -165,7 +165,7 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
         } catch (error) {
           var msg = new SpeechSynthesisUtterance();
 
-          msg.text = "Hello World";
+          msg.text = "Error fetching response";
           window.speechSynthesis.speak(msg);
 
           console.error("Error in respond function:", error);
