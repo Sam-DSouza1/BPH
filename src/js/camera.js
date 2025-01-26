@@ -177,15 +177,15 @@ load();
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
           // Speak the response out loud
-          const msg = new SpeechSynthesisUtterance();
-          msg.rate = 1.5;
-          msg.text = response;
-          window.speechSynthesis.speak(msg);          
+          // const msg = new SpeechSynthesisUtterance();
+          // msg.rate = 1.5;
+          // msg.text = response;
+          // window.speechSynthesis.speak(msg);          
         } catch (error) {
-          const msg = new SpeechSynthesisUtterance();
-          msg.rate = 1.5;
-          msg.text = "Error fetching response";
-          window.speechSynthesis.speak(msg); 
+          // const msg = new SpeechSynthesisUtterance();
+          // msg.rate = 1.5;
+          // msg.text = "Error fetching response";
+          // window.speechSynthesis.speak(msg); 
           console.error("Error in respond function:", error);
         }
    
@@ -202,9 +202,8 @@ let videoOpen = false;
 const videoStreamElement = document.getElementById("video-stream");
   document.getElementById("video-stream-checkbox").addEventListener("click", () => {
     var msg = new SpeechSynthesisUtterance();
-
-msg.text = "Hello World";
-window.speechSynthesis.speak(msg);
+  msg.text = "Hello World";
+  window.speechSynthesis.speak(msg);
 
   videoStreamElement.classList.toggle("hidden");
   if(videoOpen) {
