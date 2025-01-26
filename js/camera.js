@@ -119,6 +119,9 @@
         try {
           const response = await respond(rawBase64Data); // Call respond with Base64 image
           console.log("AI Response:", response); // Log AI response
+          // Speak the response out loud
+          const utterance = new SpeechSynthesisUtterance(response);
+          window.speechSynthesis.speak(utterance);
         } catch (error) {
           console.error("Error in respond function:", error);
         }

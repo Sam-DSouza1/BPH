@@ -118,30 +118,12 @@
       const response = await fetch('./encoded_image.txt'); // Ensure the file is in the same directory
       return await response.text();
     }
-    console.log(await loadBase64FromFile());
 
 
     // Click event listener
     tapArea.addEventListener('click', async () => {
       description.textContent = "Processing...";
       description.style.display = 'block';
-
-
-      try {
-        // Call the `respond` function and get the AI-generated response
-        const base64Image = await loadBase64FromFile(); // Load Base64 dynamically
-        const responseText = await respond(base64Image);
-        description.textContent = responseText;
-
-
-        // Speak the response out loud
-        const utterance = new SpeechSynthesisUtterance(responseText);
-        window.speechSynthesis.speak(utterance);
-      } catch (error) {
-        description.textContent = "Error processing the request.";
-        console.error("Error:", error);
-      }
-
 
       // Hide the description after 5 seconds
       setTimeout(() => {
@@ -152,8 +134,8 @@
   <!-- <script type="module" src="./js/yolo2.js"></script>
   <script type="module" src="./js/utils/detect.js"></script>
   <script type="module" src="./js/utils/renderBox.js"></script> -->
+  <script type="module" src="./js/requests.js"></script>
   <script src="./js/camera.js"></script>
   <!-- <script type="module" src="./js/yolo2.js"></script> -->
-  <script src="./js/requests.js"></script>
 </body>
 </html>
