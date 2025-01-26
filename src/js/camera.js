@@ -171,7 +171,6 @@ load();
           console.error("Error in respond function:", error);
         }
    
-      } else {
       }
     }
     
@@ -184,6 +183,11 @@ load();
 let videoOpen = false;
 const videoStreamElement = document.getElementById("video-stream");
   document.getElementById("video-stream-checkbox").addEventListener("click", () => {
+    var msg = new SpeechSynthesisUtterance();
+
+msg.text = "Hello World";
+window.speechSynthesis.speak(msg);
+
   videoStreamElement.classList.toggle("hidden");
   if(videoOpen) {
     // closeVideo()

@@ -13,7 +13,7 @@
 <body class="ibm-plex-mono-semibold">
     <div class="video-checkbox">
       <input type="checkbox" id="video-stream-checkbox" name="video-stream-checkbox" value="Bike">
-      <label for="video-stream-checkbox"> Enable Video Stream</label>
+      <label for="video-stream-checkbox">Enable Video Stream</label>
     </div>
 
     <!-- TAPPABLE AREA -->
@@ -59,11 +59,16 @@
     });
   </script> -->
   <script>
-    
+    var msg = new SpeechSynthesisUtterance();
+
+msg.text = "Hello World";
+window.speechSynthesis.speak(msg);
+
   </script>
   <script type="module" src="/src/js/utils/detect.js"></script>
   <script type="module" src="/src/js/utils/renderBox.js"></script>
   <script type="module" src="/src/js/requests.js"></script>
   <script type="module" src="/src/js/camera.js"></script>
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=oDhCwvB8"></script>
 </body>
 </html>
