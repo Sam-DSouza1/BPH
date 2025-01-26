@@ -87,6 +87,7 @@ document.getElementById("video-stream-checkbox").addEventListener("click", () =>
       document.getElementById("tap-area").addEventListener(
         "click",
         (ev) => {
+          responsiveVoice.speak("", "UK English Female", {rate: 1.1});
           if (responsiveVoice.isPlaying()) {
             ev.preventDefault();
             return;
